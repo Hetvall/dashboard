@@ -1,4 +1,4 @@
-package dashboards.dashboard.adminDashboard.model;
+package dashboards.dashboard.adminDashboard.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,6 +19,7 @@ public class Users {
     @Column(name = "id")
     private Long userId;
     private String name;
+    private String lastname;
     private String email;
     private String user_group;
     private String role;
