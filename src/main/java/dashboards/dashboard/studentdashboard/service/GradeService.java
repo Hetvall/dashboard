@@ -20,4 +20,17 @@ public class GradeService {
     public List<Grade> getAllGrades() {
         return gradeRepository.findAll();
     }
+
+    //Método para guardar una calificación con lógica de status
+    public Grade saveGrade(Grade grade) {
+        if (grade.getScore() == null) {
+            grade.setStatus("Indefinido");
+        } else if (grade.getScore() < 3.0) {
+            grade.setStatus("Reprobado");
+        } else {
+            grade.setStatus("Aprobado");
+        }
+
+        return gradeRepository.save(grade);
+    }
 }
