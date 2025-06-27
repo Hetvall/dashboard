@@ -17,13 +17,14 @@ public class Course {
     private String title;
     private String description;
 
-    @JsonManagedReference
+    @JsonManagedReference("content-course")
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<Content> contents = new ArrayList<>();
 
-    @JsonManagedReference
+    @JsonManagedReference("module-course")
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<Module> modules = new ArrayList<>();
+
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

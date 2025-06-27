@@ -16,12 +16,12 @@ public class Module {
     private Long id;
 
     // Relación con la tabla courses
-    @JsonBackReference
+    @JsonBackReference("module-course") // debe coincidir con el nombre usado en Course
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
 
-    @JsonManagedReference
+    @JsonManagedReference("content-module") // debe coincidir con el nombre usado en Content
     @OneToMany(mappedBy = "module", cascade = CascadeType.ALL)
     private List<Content> contents = new ArrayList<>();
 

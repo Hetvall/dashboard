@@ -25,12 +25,12 @@ public class Content {
     private String description;
     private String url;
 
-    @JsonBackReference
+    @JsonBackReference("content-course")
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
 
-    @JsonBackReference
+    @JsonBackReference("content-module")
     @ManyToOne
     @JoinColumn(name = "module_id")
     private Module module;
