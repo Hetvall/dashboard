@@ -15,7 +15,6 @@ public class CreateUserDTO {
     private String name;
     private String lastname;
     private String email;
-    private String user_group;
+    private String userGroup;
     private String role;
-    private Date createdAt;
 }

@@ -21,7 +21,12 @@ public class Users {
     private String name;
     private String lastname;
     private String email;
-    private String user_group;
+
+    @Column(name = "user_group")
+    private String userGroup;
+
     private String role;
+
+    @Column(name = "created_at")
     private Date createdAt;
 }

@@ -1,9 +1,6 @@
 package dashboards.dashboard.adminDashboard.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +22,12 @@ public class Courses {
     private String modality;
     private String certification;
     private String duration;
+
+    @Column(columnDefinition = "TEXT")
     private String description;
+
     private BigDecimal price;
+
+    @Column(name = "created_at")
     private Date createdAt;
 }
