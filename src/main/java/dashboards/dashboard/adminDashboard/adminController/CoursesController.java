@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -26,7 +27,7 @@ public class CoursesController {
 
     // Create a new course
     @PostMapping("/courses/new")
-    public ResponseEntity<String> createCourse(@RequestBody CreateCourseDTO createCourseDTO) {
+    public ResponseEntity<Courses> createCourse(@RequestBody CreateCourseDTO createCourseDTO) {
         Courses courses = new Courses();
 
         courses.setName(createCourseDTO.getName());
@@ -36,20 +37,19 @@ public class CoursesController {
         courses.setDescription(createCourseDTO.getDescription());
         courses.setPrice(createCourseDTO.getPrice());
         courses.setCreatedAt(new Date());
-        coursesRepo.save(courses);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body("Course created successfully!");
+        Courses savedCourse = coursesRepo.save(courses);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedCourse);
     }
 
     // Preload course content when clicking on "Editar Vista" by ID
-    @GetMapping("/courses/{id}")
+    @GetMapping("/courses/edit-view/{id}")
     public ResponseEntity<Courses> getCourseById(@PathVariable Long id) {
         return coursesRepo.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     // Save changes after clicking on "Actualizar curso"
-    @PutMapping("/courses/{id}")
-    public ResponseEntity<String> editCourseView(@PathVariable Long id, @RequestBody EditCourseViewDTO editCourseViewDTO) {
+    @PutMapping("/courses/edit-view/{id}")
+    public ResponseEntity<Map<String, String>> editCourseView(@PathVariable Long id, @RequestBody EditCourseViewDTO editCourseViewDTO) {
         Optional<Courses> optionalCourse = coursesRepo.findById(id);
 
         if(optionalCourse.isPresent()) {
@@ -60,28 +60,29 @@ public class CoursesController {
             courses.setDescription(editCourseViewDTO.getDescription());
             courses.setPrice(editCourseViewDTO.getPrice());
             coursesRepo.save(courses);
-            return ResponseEntity.ok("Course updated!");
+            return ResponseEntity.ok(Map.of("message","Course updated!"));
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Course not found, please try again");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "Course not found, please try again"));
         }
     }
 
     // Delete course
     @DeleteMapping("/courses/{id}")
-    public ResponseEntity<String> deleteCourseById(@PathVariable Long id) {
+    public ResponseEntity<Map<String, String>> deleteCourseById(@PathVariable Long id) {
         Optional<Courses> optionalCourses = coursesRepo.findById(id);
 
         if(optionalCourses.isPresent()) {
+            System.out.println("✅ Eliminando curso ID " + id);
             coursesRepo.delete(optionalCourses.get());
-            return ResponseEntity.ok("Course deleted successfully");
+            return ResponseEntity.ok(Map.of("message", "Course deleted successfully"));
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Course not found, please try again!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "Course not found, please try again!"));
         }
     }
 
     // Search course by name
-    @GetMapping("/courses/search")
-    public List<Courses> searchCourses(@RequestParam String name) {
-        return coursesRepo.findByNameContainingIgnoreCase(name);
-    }
+ //   @GetMapping("/courses/search")
+ //   public List<Courses> searchCourses(@RequestParam String name) {
+ //       return coursesRepo.findByNameContainingIgnoreCase(name);
+ //   }
 }

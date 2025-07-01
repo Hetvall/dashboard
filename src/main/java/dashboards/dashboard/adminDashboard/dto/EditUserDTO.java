@@ -14,5 +14,5 @@ public class EditUserDTO {
     private String lastname;
     private String role;
     private String email;
-    private String user_group;
+    private String userGroup;
 }
