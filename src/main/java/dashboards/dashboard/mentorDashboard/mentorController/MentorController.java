@@ -1,11 +1,10 @@
 package dashboards.dashboard.mentorDashboard.mentorController;
 
 import dashboards.dashboard.mentorDashboard.dto.FeedbackRequest;
-
+import dashboards.dashboard.mentorDashboard.dto.MentorshipProgressDTO;
 import dashboards.dashboard.mentorDashboard.model.Feedback;
 import dashboards.dashboard.mentorDashboard.model.Mentorship;
 import dashboards.dashboard.mentorDashboard.model.MentorUsers;
-
 
 import dashboards.dashboard.mentorDashboard.repository.MentorshipRepository;
 import dashboards.dashboard.mentorDashboard.repository.UserRepository;
@@ -20,6 +19,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/mentors")
+@CrossOrigin(origins = "http://localhost:4200")
 public class MentorController {
     @GetMapping
     public String index() {
@@ -73,5 +73,20 @@ public class MentorController {
 
         feedbackRepo.save(feedback);
         return ResponseEntity.status(HttpStatus.CREATED).body("Feedback enviado correctamente");
+    }
+
+    @Autowired
+    private MentorshipRepository mentorshipRepository;
+
+    @GetMapping("/{mentorId}/mentorships")
+    public List<MentorshipProgressDTO> getMentorships(@PathVariable Long mentorId) {
+        List<MentorshipProgressDTO> mentorships = List.of(
+            new MentorshipProgressDTO("Math 101", 75),
+            new MentorshipProgressDTO("Physics 201", 60),
+            new MentorshipProgressDTO("Literature 101", 80),
+            new MentorshipProgressDTO("Biology 101", 50),
+            new MentorshipProgressDTO("History 101", 90)
+        );
+        return mentorships;
     }
 }

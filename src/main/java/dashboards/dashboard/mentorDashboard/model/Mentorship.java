@@ -13,4 +13,6 @@ public class Mentorship {
 
     private Long mentorId;
     private Long studentId;
+    private String name;
+    private int progress;
 }
