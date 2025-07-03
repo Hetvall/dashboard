@@ -1,18 +1,20 @@
-package dashboards.dashboard.adminDashboard.model;
+package dashboards.dashboard.adminDashboards.dto;
 
-import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-//@Entity
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Users {
+public class CreateUserDTO {
     private String name;
+    private String lastname;
     private String email;
-    private String group;
+    private String userGroup;
+    private String role;
 }
