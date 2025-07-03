@@ -81,8 +81,8 @@ public class CoursesController {
     }
 
     // Search course by name
-    //   @GetMapping("/courses/search")
-    //   public List<Courses> searchCourses(@RequestParam String name) {
-    //       return coursesRepo.findByNameContainingIgnoreCase(name);
-    //   }
+       @GetMapping("/courses/search")
+       public List<Courses> searchCourses(@RequestParam String name) {
+           return coursesRepo.findByNameContainingIgnoreCase(name);
+       }
 }
