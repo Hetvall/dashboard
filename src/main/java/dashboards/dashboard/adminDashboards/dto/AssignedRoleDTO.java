@@ -1,4 +1,4 @@
-package dashboards.dashboard.adminDashboard.dto;
+package dashboards.dashboard.adminDashboards.dto;
 
 
 import lombok.AllArgsConstructor;

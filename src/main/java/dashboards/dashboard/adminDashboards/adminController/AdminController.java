@@ -1,10 +1,10 @@
-package dashboards.dashboard.adminDashboard.adminController;
+package dashboards.dashboard.adminDashboards.adminController;
 
-import dashboards.dashboard.adminDashboard.dto.AssignedRoleDTO;
-import dashboards.dashboard.adminDashboard.dto.CreateUserDTO;
-import dashboards.dashboard.adminDashboard.dto.EditUserDTO;
-import dashboards.dashboard.adminDashboard.entity.Users;
-import dashboards.dashboard.adminDashboard.repository.UsersRepository;
+import dashboards.dashboard.adminDashboards.dto.AssignedRoleDTO;
+import dashboards.dashboard.adminDashboards.dto.CreateUserDTO;
+import dashboards.dashboard.adminDashboards.dto.EditUserDTO;
+import dashboards.dashboard.adminDashboards.entity.Users;
+import dashboards.dashboard.adminDashboards.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
