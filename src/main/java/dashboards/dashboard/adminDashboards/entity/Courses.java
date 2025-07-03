@@ -1,4 +1,4 @@
-package dashboards.dashboard.adminDashboard.entity;
+package dashboards.dashboard.adminDashboards.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

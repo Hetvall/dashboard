@@ -1,9 +1,9 @@
-package dashboards.dashboard.adminDashboard.adminController;
+package dashboards.dashboard.adminDashboards.adminController;
 
-import dashboards.dashboard.adminDashboard.dto.CreateCourseDTO;
-import dashboards.dashboard.adminDashboard.dto.EditCourseViewDTO;
-import dashboards.dashboard.adminDashboard.entity.Courses;
-import dashboards.dashboard.adminDashboard.repository.CoursesRepository;
+import dashboards.dashboard.adminDashboards.dto.CreateCourseDTO;
+import dashboards.dashboard.adminDashboards.dto.EditCourseViewDTO;
+import dashboards.dashboard.adminDashboards.entity.Courses;
+import dashboards.dashboard.adminDashboards.repository.CoursesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -81,8 +81,8 @@ public class CoursesController {
     }
 
     // Search course by name
- //   @GetMapping("/courses/search")
- //   public List<Courses> searchCourses(@RequestParam String name) {
- //       return coursesRepo.findByNameContainingIgnoreCase(name);
- //   }
+       @GetMapping("/courses/search")
+       public List<Courses> searchCourses(@RequestParam String name) {
+           return coursesRepo.findByNameContainingIgnoreCase(name);
+       }
 }
